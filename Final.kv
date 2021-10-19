@@ -1,0 +1,66 @@
+WindowManager:
+    MainWindow:
+
+<MainWindow>:
+    name: "main"
+
+    id: home_screen
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Image:
+                    id: my_image
+                    source: ""
+                Label:
+                    text: "^ Original ^"
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_y: None
+                    text_size: self.width, None
+                    height: self.texture_size[1]
+
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Image:
+                        id: my_image_dos
+                        source: ""
+                    Label:
+                        text: "^ Cartoonified ^"
+                        halign: "center"
+                        valign: "middle"
+                        size_hint_y: None
+                        text_size: self.width, None
+                        height: self.texture_size[1]
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            FileChooserListView:
+                id: image_lookup
+                on_selection: home_screen.selected(image_lookup.selection)
+            BoxLayout:
+                orientation: "vertical"
+                Slider:
+                    id: my_slides
+                    min: 0
+                    max: 1000
+                    step: 1
+                    on_value:
+                        home_screen.thresh1_change(*args)
+                Slider:
+                    id: my_slides_dos
+                    min: 0
+                    max: 1000
+                    step: 1
+                    on_value:
+                        home_screen.thresh1_change(*args)
+#                Button:
+#                    text: "Cartoon My Image"
+#                    on_release:
+#                        home_screen.make_cartoon(image_lookup.selection)
+
